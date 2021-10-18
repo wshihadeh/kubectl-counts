@@ -1,0 +1,122 @@
+version: 2
+
+references:
+  default_setup: &default_setup
+    docker:
+      - image: circleci/golang:1.16
+    working_directory: /go/src/github.com/wshihadeh/kubectl-counts
+
+  filter_tag_only: &filter_tag_only
+    filters:
+      tags:
+        only:
+          - /^v[0-9]+\.[0-9]+\.[0-9]+/
+      branches:
+        ignore: /.*/
+
+jobs:
+  bootstrap:
+    <<: *default_setup
+    steps:
+      - checkout
+      - run:
+          name: Setup Dependencies
+          command: make dependency
+      - save_cache:
+          key: v1-16-kubectl-counts-{{ checksum "go.mod" }}-source
+          paths:
+            - /go/pkg/mod
+  lint:
+    <<: *default_setup
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-16-kubectl-counts-{{ checksum "go.mod" }}-source
+      - run:
+          name: Setup Utilities
+          command: make utilities
+      - run:
+          name: Run tests
+          command: |
+            go version
+            go fmt ./...
+            go vet ./...
+            # go test -v ./...
+      - run:
+          name: Code Lint
+          command: make lint
+  build:
+    <<: *default_setup
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-16-kubectl-counts-{{ checksum "go.mod" }}-source
+      - run:
+          name: Build Code
+          command: make
+      - save_cache:
+          key: v1-16-kubectl-counts-{{ .Environment.CIRCLE_SHA1 }}-workspace
+          paths:
+            - /go/src/github.com/wshihadeh/kubectl-counts
+  release:
+    <<: *default_setup
+    steps:
+      - restore_cache:
+          keys:
+            - v1-16-kubectl-counts-{{ .Environment.CIRCLE_SHA1 }}-workspace
+            - v1-16-kubectl-counts-{{ checksum "go.mod" }}-source
+      - run:
+          name: Release
+          command: make release
+      - run:
+          name: Krew Release Bot
+          command: |
+            curl -LO https://github.com/rajatjindal/krew-release-bot/releases/download/v0.0.39/krew-release-bot_v0.0.39_linux_amd64.tar.gz
+            tar -xvf krew-release-bot_v0.0.39_linux_amd64.tar.gz
+            ./krew-release-bot action
+
+workflows:
+  version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 3 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - bootstrap
+      - lint:
+          requires:
+            - bootstrap
+      - build:
+          requires:
+            - lint
+  main-workflow:
+    jobs:
+      - bootstrap
+      - lint:
+          requires:
+            - bootstrap
+      - build:
+          requires:
+            - lint
+  release-workflow:
+    jobs:
+      - bootstrap:
+          <<: *filter_tag_only
+      - lint:
+          requires:
+            - bootstrap
+          <<: *filter_tag_only
+      - build:
+          requires:
+            - lint
+          <<: *filter_tag_only
+      - release:
+          requires:
+            - build
+          <<: *filter_tag_only

@@ -1,0 +1,52 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: statistics
+spec:
+  platforms:
+  - {{addURIAndSha "https://github.com/wshihadeh/kubectl-counts/releases/download/{{ .TagName }}/kubectl-counts-Darwin-x86_64.tar.gz" .TagName }}
+    bin: kubectl-counts
+    files:
+    - from: kubectl-counts
+      to: .
+    - from: LICENSE
+      to: .
+    selector:
+      matchLabels:
+        os: darwin
+        arch: amd64
+  - {{addURIAndSha "https://github.com/wshihadeh/kubectl-counts/releases/download/{{ .TagName }}/kubectl-counts-Linux-x86_64.tar.gz" .TagName }}
+    bin: kubectl-counts
+    files:
+    - from: kubectl-counts
+      to: .
+    - from: LICENSE
+      to: .
+    selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+  - {{addURIAndSha "https://github.com/wshihadeh/kubectl-counts/releases/download/{{ .TagName }}/kubectl-counts-Windows-x86_64.tar.gz" .TagName }}
+    bin: kubectl-counts.exe
+    files:
+    - from: kubectl-counts.exe
+      to: .
+    - from: LICENSE.txt
+      to: .
+    selector:
+      matchLabels:
+        os: windows
+        arch: amd64
+  version: {{ .TagName }}
+  homepage: https://github.com/wshihadeh/kubectl-counts
+  shortDescription: Filter Kubernetes resources by matching their names
+  description: |
+    Get pod allocations on nodes
+
+    Examples:
+
+    Get pod allocations on nodes for the default namespace
+    $ kubectl statistics
+
+    Get pod allocations on nodes for all namespace
+    $ kubectl statistics --all-namespaces
