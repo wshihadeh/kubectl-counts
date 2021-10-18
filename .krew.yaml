@@ -1,7 +1,7 @@
 apiVersion: krew.googlecontainertools.github.com/v1alpha2
 kind: Plugin
 metadata:
-  name: statistics
+  name: counts
 spec:
   platforms:
   - {{addURIAndSha "https://github.com/wshihadeh/kubectl-counts/releases/download/{{ .TagName }}/kubectl-counts-Darwin-x86_64.tar.gz" .TagName }}
