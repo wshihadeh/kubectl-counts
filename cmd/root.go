@@ -58,7 +58,6 @@ var rootCmd = &cobra.Command{
 	Example: rootCmdExamples,
 }
 
-
 func (list optionList) Has(option string) bool {
 	for _, o := range list {
 		if o == option {

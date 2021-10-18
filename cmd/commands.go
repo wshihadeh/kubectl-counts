@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"github.com/wshihadeh/kubectl-counts/pkg/resources"
+	"os"
 
 	"github.com/spf13/cobra"
 	"strings"
@@ -59,7 +59,6 @@ var (
 			getResoourceCounts(args, "services")
 		},
 	}
-
 )
 
 func init() {

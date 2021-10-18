@@ -10,22 +10,22 @@ import (
 	"github.com/wshihadeh/kubectl-counts/pkg/utils"
 )
 
-// Jobs - a public function for searching jobs with keyword
+// Jobs - a public function for searching jobs
 func Jobs(opt *options.SearchOptions, by string) {
 	switch by {
 	case "ns":
 		opt.AllNamespaces = true
-		JobsByNs(opt)
+		jobsByNs(opt)
 	case "container":
-		JobsByConatiner(opt)
+		jobsByConatiner(opt)
 	case "image":
-		JobsByImage(opt)
+		jobsByImage(opt)
 	default:
 		break
 	}
 }
 
-func JobsByNs(opt *options.SearchOptions) {
+func jobsByNs(opt *options.SearchOptions) {
 	var jobInfo string
 
 	jobList := utils.JobList(opt)
@@ -55,7 +55,7 @@ func JobsByNs(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func JobsByConatiner(opt *options.SearchOptions) {
+func jobsByConatiner(opt *options.SearchOptions) {
 	var jobInfo string
 
 	jobList := utils.JobList(opt)
@@ -85,7 +85,7 @@ func JobsByConatiner(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func JobsByImage(opt *options.SearchOptions) {
+func jobsByImage(opt *options.SearchOptions) {
 	var jobInfo string
 
 	jobList := utils.JobList(opt)

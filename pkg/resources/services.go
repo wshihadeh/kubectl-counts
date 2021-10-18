@@ -10,20 +10,20 @@ import (
 	"github.com/wshihadeh/kubectl-counts/pkg/utils"
 )
 
-// Services - a public function for searching services with keyword
+// Services - a public function for searching services
 func Services(opt *options.SearchOptions, by string) {
 	switch by {
 	case "ns":
 		opt.AllNamespaces = true
-		ServicesByNs(opt)
+		servicesByNs(opt)
 	case "type":
-		ServicesByType(opt)
+		servicesByType(opt)
 	default:
 		break
 	}
 }
 
-func ServicesByNs(opt *options.SearchOptions) {
+func servicesByNs(opt *options.SearchOptions) {
 	var serviceInfo string
 
 	serviceList := utils.ServiceList(opt)
@@ -53,7 +53,7 @@ func ServicesByNs(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func ServicesByType(opt *options.SearchOptions) {
+func servicesByType(opt *options.SearchOptions) {
 	var serviceInfo string
 
 	serviceList := utils.ServiceList(opt)

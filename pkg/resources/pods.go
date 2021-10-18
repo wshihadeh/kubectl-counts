@@ -17,19 +17,19 @@ func Pods(opt *options.SearchOptions, by string) {
 	switch by {
 	case "ns":
 		opt.AllNamespaces = true
-		PodsByNs(opt)
+		podsByNs(opt)
 	case "node":
-		PodsByNode(opt)
+		podsByNode(opt)
 	case "restarts":
-		PodsByRestarts(opt)
+		podsByRestarts(opt)
 	case "status":
-		PodsByStatus(opt)
+		podsByStatus(opt)
 	default:
 		break
 	}
 }
 
-func PodsByRestarts(opt *options.SearchOptions) {
+func podsByRestarts(opt *options.SearchOptions) {
 	var podInfo string
 
 	podList := utils.PodList(opt)
@@ -73,7 +73,7 @@ func PodsByRestarts(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func PodsByStatus(opt *options.SearchOptions) {
+func podsByStatus(opt *options.SearchOptions) {
 	var podInfo string
 
 	podList := utils.PodList(opt)
@@ -102,7 +102,7 @@ func PodsByStatus(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func PodsByNs(opt *options.SearchOptions) {
+func podsByNs(opt *options.SearchOptions) {
 	var podInfo string
 
 	podList := utils.PodList(opt)
@@ -131,7 +131,7 @@ func PodsByNs(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func PodsByNode(opt *options.SearchOptions) {
+func podsByNode(opt *options.SearchOptions) {
 	var podInfo string
 
 	podList := utils.PodList(opt)

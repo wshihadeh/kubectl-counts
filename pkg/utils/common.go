@@ -1,11 +1,10 @@
 package utils
 
 import (
-
+	"fmt"
 	log "github.com/sirupsen/logrus"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"os"
-	"fmt"
 
 	"github.com/wshihadeh/kubectl-counts/pkg/client"
 	"github.com/wshihadeh/kubectl-counts/pkg/options"
@@ -40,6 +39,7 @@ func setOptions(opt *options.SearchOptions) (string, *metav1.ListOptions) {
 	return namespace, listOptions
 }
 
+// CheckFoundResources - Public function to display no resource message
 func CheckFoundResources(count int) {
 	if count <= 0 {
 		fmt.Printf("%s", "No resources found\n")

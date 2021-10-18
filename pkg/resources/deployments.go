@@ -15,13 +15,13 @@ func Deployments(opt *options.SearchOptions, by string) {
 	switch by {
 	case "ns":
 		opt.AllNamespaces = true
-		DeploymentsByNs(opt)
+		deploymentsByNs(opt)
 	default:
 		break
 	}
 }
 
-func DeploymentsByNs(opt *options.SearchOptions) {
+func deploymentsByNs(opt *options.SearchOptions) {
 	var deploymentInfo string
 
 	deploymentList := utils.DeploymentList(opt)

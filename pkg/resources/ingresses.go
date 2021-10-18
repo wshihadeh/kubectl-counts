@@ -10,22 +10,22 @@ import (
 	"github.com/wshihadeh/kubectl-counts/pkg/utils"
 )
 
-// Ingresses - a public function for searching ingresses with keyword
+// Ingresses - a public function for searching ingresses
 func Ingresses(opt *options.SearchOptions, by string) {
 	switch by {
 	case "ns":
 		opt.AllNamespaces = true
-		IngressesByNs(opt)
+		ingressesByNs(opt)
 	case "class":
-		IngressesByClass(opt)
+		ingressesByClass(opt)
 	case "address":
-		IngressesByAdress(opt)
+		ingressesByAdress(opt)
 	default:
 		break
 	}
 }
 
-func IngressesByNs(opt *options.SearchOptions) {
+func ingressesByNs(opt *options.SearchOptions) {
 	var ingressInfo string
 
 	ingressList := utils.IngressList(opt)
@@ -55,7 +55,7 @@ func IngressesByNs(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func IngressesByClass(opt *options.SearchOptions) {
+func ingressesByClass(opt *options.SearchOptions) {
 	var ingressInfo string
 
 	ingressList := utils.IngressList(opt)
@@ -69,8 +69,8 @@ func IngressesByClass(opt *options.SearchOptions) {
 	classes := make(map[string]int)
 
 	for _, i := range ingressList.Items {
-		var count = classes[fmt.Sprintf("%s", i.Spec.IngressClassName)]
-		classes[fmt.Sprintf("%s", i.Spec.IngressClassName)] = count + 1
+		var count = classes[fmt.Sprintf("%s", *i.Spec.IngressClassName)]
+		classes[fmt.Sprintf("%s", *i.Spec.IngressClassName)] = count + 1
 	}
 
 	for class, count := range classes {
@@ -85,7 +85,7 @@ func IngressesByClass(opt *options.SearchOptions) {
 	fmt.Printf("%s", buf.String())
 }
 
-func IngressesByAdress(opt *options.SearchOptions) {
+func ingressesByAdress(opt *options.SearchOptions) {
 	var ingressInfo string
 
 	ingressList := utils.IngressList(opt)
