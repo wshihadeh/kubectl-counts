@@ -22,27 +22,27 @@ More info: https://github.com/wshihadeh/kubectl-counts
 
 	rootCmdExamples = `
 Get pod counts
-$ kubectl counts pod -by=ns
-$ kubectl counts pod -by=node
-$ kubectl counts pod -by=restarts
-$ kubectl counts pod -by=status
+$ kubectl counts pod --by=ns
+$ kubectl counts pod --by=node
+$ kubectl counts pod --by=restarts
+$ kubectl counts pod --by=status
 
 Get service counts
-$ kubectl counts services -by=ns
-$ kubectl counts services -by=type
+$ kubectl counts services --by=ns
+$ kubectl counts services --by=type
 
 Get jobs counts
-$ kubectl counts jobs -by=ns
-$ kubectl counts jobs -by=container
-$ kubectl counts jobs -by=image
+$ kubectl counts jobs --by=ns
+$ kubectl counts jobs --by=container
+$ kubectl counts jobs --by=image
 
 Get deployment counts
-$ kubectl counts deployments -by=ns
+$ kubectl counts deployments --by=ns
 
 Get ingress counts
-$ kubectl counts ingresses -by=ns
-$ kubectl counts ingresses -by=class
-$ kubectl counts ingresses -by=address
+$ kubectl counts ingresses --by=ns
+$ kubectl counts ingresses --by=class
+$ kubectl counts ingresses --by=address
 `
 )
 
