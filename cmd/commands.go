@@ -44,7 +44,7 @@ var (
 	jobsCmd = &cobra.Command{
 		Use:     "jobs",
 		Aliases: []string{"job"},
-		Short:   "Get Jobs counts by namespace, conatiner and image",
+		Short:   "Get Jobs counts by namespace, container and image",
 		Run: func(cmd *cobra.Command, args []string) {
 			getResoourceCounts(args, "jobs")
 		},

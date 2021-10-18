@@ -22,7 +22,7 @@ const (
 	// IngressesByClasseHeader : Header for the ingresses command
 	IngressesByClasseHeader = "CLASS\tINGRESSES"
 	// IngressesByAdressHeader : Header for the ingresses command
-	IngressesByAdressHeader = "ADRESS\tINGRESSES"
+	IngressesByAdressHeader = "ADDRESS\tINGRESSES"
 
 	// JobsByNamespaceHeader : Header for the jobs command
 	JobsByNamespaceHeader = "NAMESPACE\tJOBS"
