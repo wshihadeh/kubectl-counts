@@ -41,12 +41,25 @@ spec:
   homepage: https://github.com/wshihadeh/kubectl-counts
   shortDescription: Filter Kubernetes resources by matching their names
   description: |
-    Get pod allocations on nodes
+    Get pod counts
+    $ kubectl counts pod -by=ns
+    $ kubectl counts pod -by=node
+    $ kubectl counts pod -by=restarts
+    $ kubectl counts pod -by=status
 
-    Examples:
+    Get service counts
+    $ kubectl counts services -by=ns
+    $ kubectl counts services -by=type
 
-    Get pod allocations on nodes for the default namespace
-    $ kubectl statistics
+    Get jobs counts
+    $ kubectl counts jobs -by=ns
+    $ kubectl counts jobs -by=container
+    $ kubectl counts jobs -by=image
 
-    Get pod allocations on nodes for all namespace
-    $ kubectl statistics --all-namespaces
+    Get deployment counts
+    $ kubectl counts deployments -by=ns
+
+    Get ingress counts
+    $ kubectl counts ingresses -by=ns
+    $ kubectl counts ingresses -by=class
+    $ kubectl counts ingresses -by=address
