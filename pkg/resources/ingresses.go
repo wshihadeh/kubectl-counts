@@ -69,8 +69,16 @@ func ingressesByClass(opt *options.SearchOptions) {
 	classes := make(map[string]int)
 
 	for _, i := range ingressList.Items {
-		var count = classes[fmt.Sprintf("%s", *i.Spec.IngressClassName)]
-		classes[fmt.Sprintf("%s", *i.Spec.IngressClassName)] = count + 1
+		var class string
+
+		if i.Spec.IngressClassName != nil {
+			class = *i.Spec.IngressClassName
+		} else {
+			class = "undefined"
+		}
+
+		var count = classes[class]
+		classes[class] = count + 1
 	}
 
 	for class, count := range classes {
