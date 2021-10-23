@@ -73,9 +73,9 @@ jobs:
       - run:
           name: Krew Release Bot
           command: |
-            curl -LO https://github.com/rajatjindal/krew-release-bot/releases/download/v0.0.39/krew-release-bot_v0.0.39_linux_amd64.tar.gz
+            curl -LO https://github.com/rajatjindal/krew-release-bot/releases/download/v0.0.40/krew-release-bot_v0.0.40_linux_amd64.tar.gz
             tar -xvf krew-release-bot_v0.0.39_linux_amd64.tar.gz
-            UPSTREAM_KREW_INDEX_REPO_NAME=kubectl-counts UPSTREAM_KREW_INDEX_REPO_OWNER=wshihadeh ./krew-release-bot action
+            ./krew-release-bot action
 
 workflows:
   version: 2
