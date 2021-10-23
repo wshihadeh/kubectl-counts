@@ -1,4 +1,4 @@
-# Kubectl Node Allocaions
+# Kubectl Counts
 
 [![CircleCI](https://circleci.com/gh/wshihadeh/kubectl-counts/tree/master.svg?style=svg)](https://circleci.com/gh/wshihadeh/kubectl-counts/tree/master)
 [![GoDoc](https://godoc.org/github.com/wshihadeh/kubectl-counts?status.svg)](https://godoc.org/github.com/wshihadeh/kubectl-counts)
@@ -31,6 +31,12 @@ Manual Installation
     $ mv kubectl-counts /usr/local/bin
     $ chmod +x /usr/local/bin/kubectl-counts
 
+Or
+
+    $ git clone git@github.com:wshihadeh/kubectl-counts.git
+    $ cd kubectl-counts
+    $ ./install.sh
+
 # Examples
 
 Get pod counts: 
@@ -44,7 +50,7 @@ $ kubectl counts pod --by-status
 Get service counts:
 ```
 $ kubectl counts services --by-ns
-$ kubectl counts services --by-type§
+$ kubectl counts services --by-type
 ```
 
 Get jobs counts:
