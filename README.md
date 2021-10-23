@@ -25,8 +25,8 @@ Installation via [krew](https://krew.sigs.k8s.io/docs/user-guide/setup/install/)
 
 Manual Installation
 
-    $ export KUBECTL_GREP_VERSION=$(curl -s https://api.github.com/repos/wshihadeh/kubectl-counts/releases/latest | jq -r .tag_name)
-    $ curl -L -O https://github.com/wshihadeh/kubectl-counts/releases/download/${KUBECTL_GREP_VERSION}/kubectl-counts-$(uname -s)-$(uname -m).tar.gz
+    $ export KUBECTL_COUNTS_VERSION=$(curl -s https://api.github.com/repos/wshihadeh/kubectl-counts/releases/latest | jq -r .tag_name)
+    $ curl -L -O https://github.com/wshihadeh/kubectl-counts/releases/download/${KUBECTL_COUNTS_VERSION}/kubectl-counts-$(uname -s)-$(uname -m).tar.gz
     $ tar zxvf kubectl-counts-$(uname -s)-$(uname -m).tar.gz
     $ mv kubectl-counts /usr/local/bin
     $ chmod +x /usr/local/bin/kubectl-counts
