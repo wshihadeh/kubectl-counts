@@ -82,8 +82,8 @@ jobs:
               echo $URL 
               SHA=`sha256sum releases/$RELEASE/kubectl-counts-$file-x86_64.tar.gz | awk '{print $1}'`
               echo $SHA 
-              sed -i -E "s/@$file_URL/$URL/g" counts-template.yaml
-              sed -i -E "s/@$file_SHA/$SHA/g" counts-template.yaml
+              sed -i -E "s/@${file}_URL/$URL/g" counts-template.yaml
+              sed -i -E "s/@${file}_SHA/$SHA/g" counts-template.yaml
             done
             cat counts-template.yaml
             ls -alh 
