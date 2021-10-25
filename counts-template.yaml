@@ -1,0 +1,68 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: counts
+spec:
+  platforms:
+  - uri: https://github.com/wshihadeh/kubectl-counts/releases/download/@VERSION/kubectl-counts-Darwin-x86_64.tar.gz
+    sha256: @DARWIN_SHA
+    bin: kubectl-counts
+    files:
+    - from: kubectl-counts
+      to: .
+    - from: LICENSE
+      to: .
+    selector:
+      matchLabels:
+        os: darwin
+        arch: amd64
+  - uri: https://github.com/wshihadeh/kubectl-counts/releases/download/@VERSION/kubectl-counts-Linux-x86_64.tar.gz
+    sha256: @LINUX_SHA
+    bin: kubectl-counts
+    files:
+    - from: kubectl-counts
+      to: .
+    - from: LICENSE
+      to: .
+    selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+  - uri: https://github.com/wshihadeh/kubectl-counts/releases/download/@VERSION/kubectl-counts-Windows-x86_64.tar.gz
+    sha256: @WINDOWS_SHA
+    bin: kubectl-counts.exe
+    files:
+    - from: kubectl-counts.exe
+      to: .
+    - from: LICENSE.txt
+      to: .
+    selector:
+      matchLabels:
+        os: windows
+        arch: amd64
+  version: $VERSION
+  homepage: https://github.com/wshihadeh/kubectl-counts
+  shortDescription: Filter Kubernetes resources by matching their names
+  description: |
+    Get pod counts
+    $ kubectl counts pod -by=ns
+    $ kubectl counts pod -by=node
+    $ kubectl counts pod -by=restarts
+    $ kubectl counts pod -by=status
+
+    Get service counts
+    $ kubectl counts services -by=ns
+    $ kubectl counts services -by=type
+
+    Get jobs counts
+    $ kubectl counts jobs -by=ns
+    $ kubectl counts jobs -by=container
+    $ kubectl counts jobs -by=image
+
+    Get deployment counts
+    $ kubectl counts deployments -by=ns
+
+    Get ingress counts
+    $ kubectl counts ingresses -by=ns
+    $ kubectl counts ingresses -by=class
+    $ kubectl counts ingresses -by=address

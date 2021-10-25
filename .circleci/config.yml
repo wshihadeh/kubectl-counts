@@ -71,11 +71,11 @@ jobs:
           name: Release
           command: make release
       - run:
-          name: Krew Release Bot
+          name: Update count Krew Index
           command: |
-            curl -LO https://github.com/rajatjindal/krew-release-bot/releases/download/v0.0.40/krew-release-bot_v0.0.40_linux_amd64.tar.gz
-            tar -xvf krew-release-bot_v0.0.40_linux_amd64.tar.gz
-            ./krew-release-bot action
+            export RELEASE=`ls releases`
+            echo $RELEASE
+            mv 
 
 workflows:
   version: 2
