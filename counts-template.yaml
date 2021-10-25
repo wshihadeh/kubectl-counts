@@ -4,8 +4,8 @@ metadata:
   name: counts
 spec:
   platforms:
-  - uri: https://github.com/wshihadeh/kubectl-counts/releases/download/@VERSION/kubectl-counts-Darwin-x86_64.tar.gz
-    sha256: @DARWIN_SHA
+  - uri: @Darwin_URL
+    sha256: @Darwin_SHA
     bin: kubectl-counts
     files:
     - from: kubectl-counts
@@ -16,8 +16,8 @@ spec:
       matchLabels:
         os: darwin
         arch: amd64
-  - uri: https://github.com/wshihadeh/kubectl-counts/releases/download/@VERSION/kubectl-counts-Linux-x86_64.tar.gz
-    sha256: @LINUX_SHA
+  - uri: @Linux_URL
+    sha256: @Linux_SHA
     bin: kubectl-counts
     files:
     - from: kubectl-counts
@@ -28,8 +28,8 @@ spec:
       matchLabels:
         os: linux
         arch: amd64
-  - uri: https://github.com/wshihadeh/kubectl-counts/releases/download/@VERSION/kubectl-counts-Windows-x86_64.tar.gz
-    sha256: @WINDOWS_SHA
+  - uri: @Windows_URL
+    sha256: @Windows_SHA
     bin: kubectl-counts.exe
     files:
     - from: kubectl-counts.exe
@@ -40,7 +40,7 @@ spec:
       matchLabels:
         os: windows
         arch: amd64
-  version: $VERSION
+  version: @VERSION
   homepage: https://github.com/wshihadeh/kubectl-counts
   shortDescription: Filter Kubernetes resources by matching their names
   description: |

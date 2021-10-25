@@ -75,7 +75,20 @@ jobs:
           command: |
             export RELEASE=`ls releases`
             echo $RELEASE
-            mv 
+            sed -i -E "s/@VERSION/$$RELEASE/g" counts-template.yaml
+            for file in Darwin Linux Windows
+            do 
+              URL=https://github.com/wshihadeh/kubectl-counts/releases/download/$RELEASE/kubectl-counts-$file-x86_64.tar.gz
+              echo $URL 
+              SHA=`sha256sum releases/$RELEASE/kubectl-counts-$file-x86_64.tar.gz | awk '{print $1}'`
+              echo $SHA 
+              sed -i -E "s/@$file_URL/$URL/g" counts-template.yaml
+              sed -i -E "s/@$file_SHA/$SHA/g" counts-template.yaml
+            done
+            cat counts-template.yaml
+            ls -alh 
+            git status
+
 
 workflows:
   version: 2
