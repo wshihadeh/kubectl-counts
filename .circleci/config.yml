@@ -87,9 +87,9 @@ jobs:
               URL_KEY=@${file}_URL
               SHA_KEY=@${file}_SHA
               echo $URL_KEY
-              echo SHA_KEY
-              sed -i -E "s/$URL_KEY/$URL/g" counts-template.yaml || echo "Not working"
-              sed -i -E "s/$SHA_KEY/$SHA/g" counts-template.yaml || echo "Not working"
+              echo $SHA_KEY
+              sed -i -E "s#$URL_KEY#$URL#g" counts-template.yaml || echo "Not working"
+              sed -i -E "s#$SHA_KEY#$SHA#g" counts-template.yaml || echo "Not working"
             done
             cat counts-template.yaml
             ls -alh 
